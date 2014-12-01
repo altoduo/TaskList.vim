@@ -134,9 +134,9 @@ endif
 function! s:OpenWindow(buffnr, lineno)
     " Open results window and place items there.
     if g:tlWindowPosition == 0
-      execute 'sp -TaskList_'.a:buffnr.'-'
+      execute 'sp TaskList_'.a:buffnr.'.tl'
     else
-      execute 'botright sp -TaskList_'.a:buffnr.'-'
+      execute 'botright sp TaskList_'.a:buffnr.'.tl'
     endif
 
     let b:original_buffnr = a:buffnr
@@ -183,7 +183,7 @@ function! s:SearchFile(hits, word)
         if foldlevel(l:curr_line) != 0
             normal! 99zo
         endif
-        if l:div == 0 
+        if l:div == 0
             if a:hits != 0
                 let @z = @z."\n"
             endif
@@ -242,7 +242,7 @@ function! s:UpdateDoc()
         exe "normal! ".l:line_hit."Gzz"
         exe 'match Search /\%'.line(".").'l.*/'
     endif
-    execute bufwinnr('-TaskList_'.l:buffnr.'-')." wincmd w"
+    execute bufwinnr('TaskList_'.l:buffnr.'.tl')." wincmd w"
     redraw
 endfunction
 
@@ -280,7 +280,7 @@ endfunction
 " Function: Check for screen update {{{1
 "--------------------------------------------------------------------------
 function! s:CheckForUpdate()
-    if stridx(expand("%:t"), '-TaskList_') == -1
+    if stridx(expand("%:t"), 'TaskList_') == -1
         return
     endif
     if b:selected_line != line(".")

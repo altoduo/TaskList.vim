@@ -352,7 +352,7 @@ function! s:TaskList()
     " Save globals and change updatetime
     let b:selected_line = line(".")
     let s:old_updatetime = &updatetime
-    set updatetime=350
+    set updatetime=100
 
     " update the doc and hook the CheckForUpdate function.
     call <sid>UpdateDoc()
